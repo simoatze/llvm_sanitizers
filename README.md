@@ -2,27 +2,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org782c07b">1. Introduction</a></li>
-<li><a href="#org20e4d7b">2. Prerequisites</a></li>
-<li><a href="#org045ebc4">3. Installation</a>
+<li><a href="#org71577d7">1. Introduction</a></li>
+<li><a href="#org368389f">2. Prerequisites</a></li>
+<li><a href="#org5cb171e">3. Installation</a>
 <ul>
-<li><a href="#org01c5256">3.1. Options</a></li>
+<li><a href="#org6abb5ae">3.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#orgba358c3">4. Contacts and Support</a></li>
+<li><a href="#org7258d2e">4. Contacts and Support</a></li>
 </ul>
 </div>
 </div>
 
 
-<a id="org782c07b"></a>
+<a id="org71577d7"></a>
 
 # Introduction
 
 This script download, build and install Clang/LLVM with Google Sanitizers support.
 
 
-<a id="org20e4d7b"></a>
+<a id="org368389f"></a>
 
 # Prerequisites
 
@@ -33,7 +33,7 @@ Ninja build system is preferred. For more information how to obtain
 Ninja visit <https://martine.github.io/ninja>.
 
 
-<a id="org045ebc4"></a>
+<a id="org5cb171e"></a>
 
 # Installation
 
@@ -46,7 +46,7 @@ You can start the build process by running `build.sh`:
 
 The installation script will create a folder called *LLVM* at the same
 level of the *llvm\_sanitizers* directory and install LLVM into
-*LLVM\_INSTALL*. If you do not specify the \`&#x2013;prefix\` option, by
+*LLVM\_INSTALL*. If you do not specify the #+BEGIN\_SRC sh :exports code &#x2013;prefix #+END\_SRC\` option, by
 default the script will try to install the software under "/usr".
 
 You can specify the \`&#x2013;no-install\` option to skip the install
@@ -71,7 +71,7 @@ To make the environment permanent add the previous lines or
 equivalents to your shell start-up script such as "~/.bashrc".
 
 
-<a id="org01c5256"></a>
+<a id="org6abb5ae"></a>
 
 ## Options
 
@@ -101,7 +101,7 @@ shows the options available for building and installing Clang/LLVM.
       --no-install                 = Do not install.
 
 
-<a id="orgba358c3"></a>
+<a id="org7258d2e"></a>
 
 # Contacts and Support
 
