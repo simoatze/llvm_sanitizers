@@ -246,8 +246,10 @@ then
     exit 1
 fi
 
-echo
-echook "LLVM will be installed at [${LLVM_INSTALL}]"
+if [ "$INSTALL" == "true" ]; then
+    echo
+    echook "LLVM will be installed at [${LLVM_INSTALL}]"
+fi
 
 # Saving installation patch
 # echo ${LLVM_INSTALL} > .install_path

@@ -28,12 +28,12 @@ You can start the build process by running =build.sh=:
 
 #+BEGIN_SRC sh :exports code
   export LLVM_INSTALL=/your/install/path
-  ./build.sh --prefix=${LLVM_INSTALL}
+  ./build.sh --prefix=${LLVM_INSTALL} myclang
 #+END_SRC
 
-The installation script will create a folder called ~LLVM~ at the same
-level of the ~llvm_sanitizers~ directory and install Clang/LLVM into
-~LLVM_INSTALL~. If you do not specify the ~--prefix~ option, by
+The installation script will create a folder called ~myclang~ at the
+same level of the ~llvm_sanitizers~ directory and install Clang/LLVM
+into ~LLVM_INSTALL~. If you do not specify the ~--prefix~ option, by
 default the script will try to install the software under ~/usr~.
 
 You can specify the ~--no-install~ option to skip the install
@@ -54,8 +54,8 @@ with the following commands (change ~/current/path/~ with the path to
 the /build.sh script folder):
 
 #+BEGIN_SRC
-export PATH=/current/path/../LLVM/llvm_build/build/bin:${PATH}"
-export LD_LIBRARY_PATH=/current/path/../LLVM/llvm_build/build//lib:${LD_LIBRARY_PATH}"
+export PATH=/path/to/myclang/llvm_build/build/bin:${PATH}"
+export LD_LIBRARY_PATH=/path/to/myclang/llvm_build/build//lib:${LD_LIBRARY_PATH}"
 #+END_SRC
 
 To make the environment permanent add the previous lines or

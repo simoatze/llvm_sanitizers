@@ -2,27 +2,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd827e79">1. Introduction</a></li>
-<li><a href="#orgd94bd4e">2. Prerequisites</a></li>
-<li><a href="#org1ebecae">3. Installation</a>
+<li><a href="#orgf43986a">1. Introduction</a></li>
+<li><a href="#org8e201de">2. Prerequisites</a></li>
+<li><a href="#org2bc4386">3. Installation</a>
 <ul>
-<li><a href="#org204f3d8">3.1. Options</a></li>
+<li><a href="#org8ee4740">3.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#orgb80c454">4. Contacts and Support</a></li>
+<li><a href="#org1c8eae3">4. Contacts and Support</a></li>
 </ul>
 </div>
 </div>
 
 
-<a id="orgd827e79"></a>
+<a id="orgf43986a"></a>
 
 # Introduction
 
 This script download, build and install Clang/LLVM with Google Sanitizers support.
 
 
-<a id="orgd94bd4e"></a>
+<a id="org8e201de"></a>
 
 # Prerequisites
 
@@ -33,7 +33,7 @@ Ninja build system is preferred. For more information how to obtain
 Ninja visit <https://martine.github.io/ninja>.
 
 
-<a id="org1ebecae"></a>
+<a id="org2bc4386"></a>
 
 # Installation
 
@@ -42,11 +42,11 @@ This script facilitate the build of Clang/LLVM with with Google Sanitizers suppo
 You can start the build process by running `build.sh`:
 
     export LLVM_INSTALL=/your/install/path
-    ./build.sh --prefix=${LLVM_INSTALL}
+    ./build.sh --prefix=${LLVM_INSTALL} myclang
 
-The installation script will create a folder called `LLVM` at the same
-level of the `llvm_sanitizers` directory and install Clang/LLVM into
-`LLVM_INSTALL`. If you do not specify the `--prefix` option, by
+The installation script will create a folder called `myclang` at the
+same level of the `llvm_sanitizers` directory and install Clang/LLVM
+into `LLVM_INSTALL`. If you do not specify the `--prefix` option, by
 default the script will try to install the software under `/usr`.
 
 You can specify the `--no-install` option to skip the install
@@ -64,14 +64,14 @@ If you used the option `--no-install` you can setup your environment
 with the following commands (change `/current/path/` with the path to
 the /build.sh script folder):
 
-    export PATH=/current/path/../LLVM/llvm_build/build/bin:${PATH}"
-    export LD_LIBRARY_PATH=/current/path/../LLVM/llvm_build/build//lib:${LD_LIBRARY_PATH}"
+    export PATH=/path/to/myclang/llvm_build/build/bin:${PATH}"
+    export LD_LIBRARY_PATH=/path/to/myclang/llvm_build/build//lib:${LD_LIBRARY_PATH}"
 
 To make the environment permanent add the previous lines or
 equivalents to your shell start-up script such as "~/.bashrc".
 
 
-<a id="org204f3d8"></a>
+<a id="org8ee4740"></a>
 
 ## Options
 
@@ -101,7 +101,7 @@ shows the options available for building and installing Clang/LLVM.
       --no-install                 = Do not install.
 
 
-<a id="orgb80c454"></a>
+<a id="org1c8eae3"></a>
 
 # Contacts and Support
 
