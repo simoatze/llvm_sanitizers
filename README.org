@@ -31,10 +31,10 @@ You can start the build process by running =build.sh=:
   ./build.sh --prefix=${LLVM_INSTALL}
 #+END_SRC
 
-The installation script will create a folder called /LLVM/ at the same
-level of the /llvm_sanitizers/ directory and install LLVM into
-/LLVM_INSTALL/. If you do not specify the ~--prefix~ option, by
-default the script will try to install the software under "/usr".
+The installation script will create a folder called ~LLVM~ at the same
+level of the ~llvm_sanitizers~ directory and install Clang/LLVM into
+~LLVM_INSTALL~. If you do not specify the ~--prefix~ option, by
+default the script will try to install the software under ~/usr~.
 
 You can specify the ~--no-install~ option to skip the install
 (e.g. make install) and keep the executable under the build directory.

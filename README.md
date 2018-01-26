@@ -2,27 +2,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org239a067">1. Introduction</a></li>
-<li><a href="#org9a0e1c8">2. Prerequisites</a></li>
-<li><a href="#orgf1f7b47">3. Installation</a>
+<li><a href="#orgd827e79">1. Introduction</a></li>
+<li><a href="#orgd94bd4e">2. Prerequisites</a></li>
+<li><a href="#org1ebecae">3. Installation</a>
 <ul>
-<li><a href="#org588f620">3.1. Options</a></li>
+<li><a href="#org204f3d8">3.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org4beaa67">4. Contacts and Support</a></li>
+<li><a href="#orgb80c454">4. Contacts and Support</a></li>
 </ul>
 </div>
 </div>
 
 
-<a id="org239a067"></a>
+<a id="orgd827e79"></a>
 
 # Introduction
 
 This script download, build and install Clang/LLVM with Google Sanitizers support.
 
 
-<a id="org9a0e1c8"></a>
+<a id="orgd94bd4e"></a>
 
 # Prerequisites
 
@@ -33,7 +33,7 @@ Ninja build system is preferred. For more information how to obtain
 Ninja visit <https://martine.github.io/ninja>.
 
 
-<a id="orgf1f7b47"></a>
+<a id="org1ebecae"></a>
 
 # Installation
 
@@ -44,10 +44,10 @@ You can start the build process by running `build.sh`:
     export LLVM_INSTALL=/your/install/path
     ./build.sh --prefix=${LLVM_INSTALL}
 
-The installation script will create a folder called *LLVM* at the same
-level of the *llvm\_sanitizers* directory and install LLVM into
-*LLVM\_INSTALL*. If you do not specify the `--prefix` option, by
-default the script will try to install the software under "/usr".
+The installation script will create a folder called `LLVM` at the same
+level of the `llvm_sanitizers` directory and install Clang/LLVM into
+`LLVM_INSTALL`. If you do not specify the `--prefix` option, by
+default the script will try to install the software under `/usr`.
 
 You can specify the `--no-install` option to skip the install
 (e.g. make install) and keep the executable under the build directory.
@@ -71,7 +71,7 @@ To make the environment permanent add the previous lines or
 equivalents to your shell start-up script such as "~/.bashrc".
 
 
-<a id="org588f620"></a>
+<a id="org204f3d8"></a>
 
 ## Options
 
@@ -101,7 +101,7 @@ shows the options available for building and installing Clang/LLVM.
       --no-install                 = Do not install.
 
 
-<a id="org4beaa67"></a>
+<a id="orgb80c454"></a>
 
 # Contacts and Support
 
