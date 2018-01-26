@@ -81,6 +81,7 @@ RELEASE="50"
 HTTP=false
 LLVM_ONLY=false
 UPDATE=false
+INSTALL=true
 TSAN_OMPT=true
 BUILD_TYPE=Release
 GCC_TOOLCHAIN_PATH=
@@ -126,6 +127,10 @@ do
             UPDATE=true
             shift
             ;;
+        --no-install)
+            INSTALL=false
+            shift
+            ;;
         --build-type=*)
             BUILD_TYPE="${i#*=}"
             shift
@@ -145,13 +150,14 @@ do
             echo "                                 'man cmake-generators' for a list of generators"
             echo "                                 available for this platform."
             echo "  --release=<value>            = Specify the release version of Clang/LLVM that"
-            echo "                                 will be installed (>= 39)."
+            echo "                                 will be installed (>= 39). Default is 50."
             echo "  --http                       = Enables GitHub web url in case SSH key and"
             echo "                                 passphrase are not set in the GitHub account."
             echo "  --update                     = Update previous building."
             echo "  --build-type=<value>         = Specify the type of build. Accepted values"
             echo "                                 are Release (default), Debug or RelWithDebInfo."
             echo "  --gcc-toolchain-path=<value> = Specify the GCC toolchain path."
+            echo "  --no-install                 = Do not install."
             echo
             shift
             exit
@@ -303,11 +309,6 @@ if [ "$RELEASE" == "dev" ]; then
     LIBCXX_RELEASE=
     LIBCXXABI_RELEASE=
     LIBUNWIND_RELEASE=
-    if [  "$TSAN_OMPT" == "true" ]; then
-        OPENMPRT_RELEASE=towards_tr4
-    else
-        OPENMPRT_RELEASE="release_"$RELEASE
-    fi
 else
     LLVM_RELEASE="release_"$RELEASE
     CLANG_RELEASE="release_"$RELEASE
@@ -315,11 +316,6 @@ else
     LIBCXX_RELEASE="release_"$RELEASE
     LIBCXXABI_RELEASE="release_"$RELEASE
     LIBUNWIND_RELEASE="release_"$RELEASE
-    if [  "$TSAN_OMPT" == "true" ]; then
-        OPENMPRT_RELEASE=towards_tr4
-    else
-        OPENMPRT_RELEASE="release_"$RELEASE
-    fi
 fi
 
 # LLVM installation directory
@@ -373,7 +369,6 @@ cmake -G "${BUILD_SYSTEM}" \
       -D CMAKE_CXX_COMPILER=clang++ \
       -D CMAKE_BUILD_TYPE=${BUILD_TYPE} \
       -D CMAKE_INSTALL_PREFIX:PATH=${LLVM_INSTALL} \
-      -D CLANG_DEFAULT_OPENMP_RUNTIME:STRING=libomp \
       -D LLVM_ENABLE_LIBCXX=ON \
       -D LLVM_ENABLE_LIBCXXABI=ON \
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON \
@@ -382,8 +377,10 @@ cmake -G "${BUILD_SYSTEM}" \
       ${LLVM_SRC}
 
 cd "${LLVM_BUILD}"
-${BUILD_CMD} -j${PROCS} -l${PROCS}
-${BUILD_CMD} install
+${BUILD_CMD} -j${PROCS}
+if [ "$INSTALL" == "true" ]; then
+    ${BUILD_CMD} install
+fi
 
 export PATH=${LLVM_INSTALL}/bin:${OLD_PATH}
 export LD_LIBRARY_PATH=${LLVM_INSTALL}/lib:${OLD_LD_LIBRARY_PATH}

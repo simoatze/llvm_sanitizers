@@ -1,0 +1,98 @@
+#+DESCRIPTION: LLVM/Clang Installation Script
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+XSLT:
+
+* Introduction
+This script download, build and install Clang/LLVM with Google Sanitizers support.
+
+* Prerequisites
+To compile Clang/LLVM you need a recent version of GCC >= 4.8.5 and, a
+CMake version >= 3.4.3.
+
+Ninja build system is preferred. For more information how to obtain
+Ninja visit https://martine.github.io/ninja.
+
+* Installation
+
+This script facilitate the build of Clang/LLVM with with Google Sanitizers support.
+
+You can start the build process by running =build.sh=:
+
+#+BEGIN_SRC sh :exports code
+  export LLVM_INSTALL=/your/install/path
+  ./build.sh --prefix=${LLVM_INSTALL}
+#+END_SRC
+
+The installation script will create a folder called /LLVM/ at the same
+level of the /llvm_sanitizers/ directory and install LLVM into
+/LLVM_INSTALL/. If you do not specify the /--prefix/ option, by
+default the script will try to install the software under "/usr".
+
+You can specify the /--no-install/ option to skip the install
+(e.g. make install) and keep the executable under the build directory.
+
+Once the installation completes, you need to setup your environement
+to allow Clang/LLVM to work correctly.
+
+Please set the following path variables:
+
+#+BEGIN_SRC
+export PATH=${LLVM_INSTALL}/bin:${PATH}"
+export LD_LIBRARY_PATH=${LLVM_INSTALL}/lib:${LD_LIBRARY_PATH}"
+#+END_SRC
+
+If you used the option /--no-install/ you can setup your environment
+with the following commands (change /\/current\/path/ with the path to
+the /build.sh/ script folder):
+
+#+BEGIN_SRC
+export PATH=/current/path/../LLVM/llvm_build/build/bin:${PATH}"
+export LD_LIBRARY_PATH=/current/path/../LLVM/llvm_build/build//lib:${LD_LIBRARY_PATH}"
+#+END_SRC
+
+To make the environment permanent add the previous lines or
+equivalents to your shell start-up script such as "~/.bashrc".
+
+** Options
+
+Running the command:
+
+#+BEGIN_SRC
+./install --help
+#+END_SRC
+
+shows the options available for building and installing Clang/LLVM.
+
+#+BEGIN_SRC
+Usage
+
+  ./build.sh [options]
+
+Options
+  --prefix=<value>             = Specify an installation path.
+  --build-system=<value>       = Specify a build system generator. Please run
+                                 'man cmake-generators' for a list of generators
+                                 available for this platform. Default is Ninja.
+  --release=<value>            = Specify the release version of Clang/LLVM that
+                                 will be installed (>= 39). Default is 3.9.
+  --http                       = Enables GitHub web url in case SSH key and
+                                 passphrase are not set in the GitHub account.
+  --update                     = Update previous building. Default is SSH.
+  --build-type=<value>         = Specify the type of build. Accepted values
+                                 are Release (default), Debug or RelWithDebInfo.
+  --gcc-toolchain-path=<value> = Specify the GCC toolchain path.
+  --no-install                 = Do not install.
+#+END_SRC
+
+* Contacts and Support
+
+- E-Mail Contacts:
+  #+HTML: <ul style="list-style-type:circle"> <li> <a href="mailto:satzeni@nvidia.com?Subject=[llvm_sanitizer]%20" target="_top">Simone Atzeni</a> </li></ul>
