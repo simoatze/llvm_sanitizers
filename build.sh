@@ -246,7 +246,7 @@ then
     exit 1
 fi
 
-if [ "$INSTALL" == "true" ]; then
+if [ $INSTALL == false ]; then
     echo
     echook "LLVM will be installed at [${LLVM_INSTALL}]"
 fi
@@ -380,7 +380,7 @@ cmake -G "${BUILD_SYSTEM}" \
 
 cd "${LLVM_BUILD}"
 ${BUILD_CMD} -j${PROCS}
-if [ "$INSTALL" == "true" ]; then
+if [ $INSTALL == true ]; then
     ${BUILD_CMD} install
 fi
 
