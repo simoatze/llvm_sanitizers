@@ -367,14 +367,14 @@ echo
 echook "Building LLVM/Clang..."
 cd ${LLVM_BUILD}
 cmake -G "${BUILD_SYSTEM}" \
-      -D CMAKE_C_COMPILER=clang \
-      -D CMAKE_CXX_COMPILER=clang++ \
+      -D CMAKE_C_COMPILER=$(which gcc) \
+      -D CMAKE_CXX_COMPILER=$(which g++) \
+      -D CMAKE_ASM_COMPILER=$(which gcc) \
+      -D CLANG_DEFAULT_CXX_STDLIB=libc++ \
       -D CMAKE_BUILD_TYPE=${BUILD_TYPE} \
       -D CMAKE_INSTALL_PREFIX:PATH=${LLVM_INSTALL} \
       -D LLVM_ENABLE_LIBCXX=ON \
-      -D LLVM_ENABLE_LIBCXXABI=ON \
       -D LIBCXXABI_USE_LLVM_UNWINDER=ON \
-      -D CLANG_DEFAULT_CXX_STDLIB=libc++ \
       ${GCC_TOOLCHAIN_PATH} \
       ${LLVM_SRC}
 
