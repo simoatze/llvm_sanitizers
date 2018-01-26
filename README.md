@@ -2,27 +2,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org71577d7">1. Introduction</a></li>
-<li><a href="#org368389f">2. Prerequisites</a></li>
-<li><a href="#org5cb171e">3. Installation</a>
+<li><a href="#org239a067">1. Introduction</a></li>
+<li><a href="#org9a0e1c8">2. Prerequisites</a></li>
+<li><a href="#orgf1f7b47">3. Installation</a>
 <ul>
-<li><a href="#org6abb5ae">3.1. Options</a></li>
+<li><a href="#org588f620">3.1. Options</a></li>
 </ul>
 </li>
-<li><a href="#org7258d2e">4. Contacts and Support</a></li>
+<li><a href="#org4beaa67">4. Contacts and Support</a></li>
 </ul>
 </div>
 </div>
 
 
-<a id="org71577d7"></a>
+<a id="org239a067"></a>
 
 # Introduction
 
 This script download, build and install Clang/LLVM with Google Sanitizers support.
 
 
-<a id="org368389f"></a>
+<a id="org9a0e1c8"></a>
 
 # Prerequisites
 
@@ -33,7 +33,7 @@ Ninja build system is preferred. For more information how to obtain
 Ninja visit <https://martine.github.io/ninja>.
 
 
-<a id="org5cb171e"></a>
+<a id="orgf1f7b47"></a>
 
 # Installation
 
@@ -46,10 +46,10 @@ You can start the build process by running `build.sh`:
 
 The installation script will create a folder called *LLVM* at the same
 level of the *llvm\_sanitizers* directory and install LLVM into
-*LLVM\_INSTALL*. If you do not specify the #+BEGIN\_SRC sh :exports code &#x2013;prefix #+END\_SRC\` option, by
+*LLVM\_INSTALL*. If you do not specify the `--prefix` option, by
 default the script will try to install the software under "/usr".
 
-You can specify the \`&#x2013;no-install\` option to skip the install
+You can specify the `--no-install` option to skip the install
 (e.g. make install) and keep the executable under the build directory.
 
 Once the installation completes, you need to setup your environement
@@ -60,9 +60,9 @@ Please set the following path variables:
     export PATH=${LLVM_INSTALL}/bin:${PATH}"
     export LD_LIBRARY_PATH=${LLVM_INSTALL}/lib:${LD_LIBRARY_PATH}"
 
-If you used the option *&#x2013;no-install* you can setup your environment
-with the following commands (change \`/current/path/\` with the path to
-the \`build.sh\` script folder):
+If you used the option `--no-install` you can setup your environment
+with the following commands (change `/current/path/` with the path to
+the /build.sh script folder):
 
     export PATH=/current/path/../LLVM/llvm_build/build/bin:${PATH}"
     export LD_LIBRARY_PATH=/current/path/../LLVM/llvm_build/build//lib:${LD_LIBRARY_PATH}"
@@ -71,7 +71,7 @@ To make the environment permanent add the previous lines or
 equivalents to your shell start-up script such as "~/.bashrc".
 
 
-<a id="org6abb5ae"></a>
+<a id="org588f620"></a>
 
 ## Options
 
@@ -101,7 +101,7 @@ shows the options available for building and installing Clang/LLVM.
       --no-install                 = Do not install.
 
 
-<a id="org7258d2e"></a>
+<a id="org4beaa67"></a>
 
 # Contacts and Support
 

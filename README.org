@@ -33,10 +33,10 @@ You can start the build process by running =build.sh=:
 
 The installation script will create a folder called /LLVM/ at the same
 level of the /llvm_sanitizers/ directory and install LLVM into
-/LLVM_INSTALL/. If you do not specify the #+BEGIN_SRC sh :exports code --prefix #+END_SRC` option, by
+/LLVM_INSTALL/. If you do not specify the ~--prefix~ option, by
 default the script will try to install the software under "/usr".
 
-You can specify the `--no-install` option to skip the install
+You can specify the ~--no-install~ option to skip the install
 (e.g. make install) and keep the executable under the build directory.
 
 Once the installation completes, you need to setup your environement
@@ -49,9 +49,9 @@ export PATH=${LLVM_INSTALL}/bin:${PATH}"
 export LD_LIBRARY_PATH=${LLVM_INSTALL}/lib:${LD_LIBRARY_PATH}"
 #+END_SRC
 
-If you used the option /--no-install/ you can setup your environment
-with the following commands (change `/current/path/` with the path to
-the `build.sh` script folder):
+If you used the option ~--no-install~ you can setup your environment
+with the following commands (change ~/current/path/~ with the path to
+the /build.sh script folder):
 
 #+BEGIN_SRC
 export PATH=/current/path/../LLVM/llvm_build/build/bin:${PATH}"
