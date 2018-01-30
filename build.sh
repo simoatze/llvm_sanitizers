@@ -82,6 +82,12 @@ HTTP=false
 LLVM_ONLY=false
 UPDATE=false
 INSTALL=true
+LIBCXX=false
+LIBCXX_FLAGS=
+LIBCXXABI=false
+LIBCXXABI_FLAGS=
+LIBUNWIND=false
+LIBUNWIND_FLAGS=
 TSAN_OMPT=true
 BUILD_TYPE=Release
 GCC_TOOLCHAIN_PATH=
@@ -129,6 +135,18 @@ do
             ;;
         --no-install)
             INSTALL=false
+            shift
+            ;;
+        --with-libcxx)
+            LIBCXX=true
+            shift
+            ;;
+        --with-libcxxabi)
+            LIBCXXABI=true
+            shift
+            ;;
+        --with-libunwind)
+            LIBUNWIND=true
             shift
             ;;
         --build-type=*)
@@ -348,20 +366,28 @@ echo
 echook "Obtaining LLVM Runtime..."
 git_clone_or_pull ${LLVMRT_REPO} ${LLVMRT_SRC} ${LLVMRT_RELEASE}
 
-# libc++ Sources
-echo
-echook "Obtaining LLVM libc++..."
-git_clone_or_pull ${LIBCXX_REPO} ${LIBCXX_SRC} ${LIBCXX_RELEASE}
+if [ $LIBCXX == true ]; then
+    # libc++ Sources
+    echo
+    echook "Obtaining LLVM libc++..."
+    git_clone_or_pull ${LIBCXX_REPO} ${LIBCXX_SRC} ${LIBCXX_RELEASE}
+    LIBCXX_FLAGS="-D CLANG_DEFAULT_CXX_STDLIB=libc++"
+fi
 
-# libc++abi Sources
-echo
-echook "Obtaining LLVM libc++abi..."
-git_clone_or_pull ${LIBCXXABI_REPO} ${LIBCXXABI_SRC} ${LIBCXXABI_RELEASE}
+if [ $LIBCXXABI == true ]; then
+    # libc++abi Sources
+    echo
+    echook "Obtaining LLVM libc++abi..."
+    git_clone_or_pull ${LIBCXXABI_REPO} ${LIBCXXABI_SRC} ${LIBCXXABI_RELEASE}
+fi
 
-# libunwind Sources
-echo
-echook "Obtaining LLVM libunwind..."
-git_clone_or_pull ${LIBUNWIND_REPO} ${LIBUNWIND_SRC} ${LIBUNWIND_RELEASE}
+if [ $LIBUNWIND == true ]; then
+    # libunwind Sources
+    echo
+    echook "Obtaining LLVM libunwind..."
+    git_clone_or_pull ${LIBUNWIND_REPO} ${LIBUNWIND_SRC} ${LIBUNWIND_RELEASE}
+    LIBUNWIND_FLAGS="-D LIBCXXABI_USE_LLVM_UNWINDER=ON"
+fi
 
 echo
 echook "Building LLVM/Clang..."
@@ -370,10 +396,10 @@ cmake -G "${BUILD_SYSTEM}" \
       -D CMAKE_C_COMPILER=$(which gcc) \
       -D CMAKE_CXX_COMPILER=$(which g++) \
       -D CMAKE_ASM_COMPILER=$(which gcc) \
-      -D CLANG_DEFAULT_CXX_STDLIB=libc++ \
+      $(LIBCXX_FLAGS) \
       -D CMAKE_BUILD_TYPE=${BUILD_TYPE} \
       -D CMAKE_INSTALL_PREFIX:PATH=${LLVM_INSTALL} \
-      -D LIBCXXABI_USE_LLVM_UNWINDER=ON \
+      $(LIBUNWIND_FLAGS) \
       ${GCC_TOOLCHAIN_PATH} \
       ${LLVM_SRC}
 
